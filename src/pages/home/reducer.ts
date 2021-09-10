@@ -12,7 +12,12 @@ export const reposReducer = (state: any = initialState, action: any) => {
       return { ...state, loading: true, error: null };
 
     case GET_USER_REPOS_SUCCESS:
-      return { ...state, loading: false, data: action.payload, error: null };
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+        error: null,
+      };
 
     case GET_USER_REPOS_FAILURE:
       return { ...state, loading: false, error: true };

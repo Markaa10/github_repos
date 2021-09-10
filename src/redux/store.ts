@@ -4,11 +4,11 @@ import { rootEpic } from "./rootEpic";
 import { rootReducer } from "./rootReducer";
 
 const epicMiddleware = createEpicMiddleware();
-const middlwares = [epicMiddleware];
+const middleware = [epicMiddleware];
 
 export const store = createStore(
   rootReducer,
-  compose(applyMiddleware(...middlwares), compose)
+  compose(applyMiddleware(...middleware), compose)
 );
 
 epicMiddleware.run(rootEpic);

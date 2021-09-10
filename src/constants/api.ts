@@ -7,8 +7,8 @@ export class Api {
   async getUserRepos(payload: any) {
     try {
       const res = await axios.get(`/users/${payload}/repos`);
-
       console.log("Get User repos response: ", res);
+
       const data = get(res, "data");
       return data;
     } catch (e) {
