@@ -16,4 +16,17 @@ export class Api {
       throw e;
     }
   }
+
+  async getUserOrgs(payload: any) {
+    try {
+      const res = await axios.get(`/users/${payload}/orgs`);
+      console.log("Get User orgs response: ", res);
+
+      const data = get(res, "data");
+      return data;
+    } catch (e) {
+      console.log("Get user orgs Error: ", e);
+      throw e;
+    }
+  }
 }

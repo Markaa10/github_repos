@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserRepos } from "./action";
+import { getUserRepos, getUserOrgs } from "./action";
 
 export function Home() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export function Home() {
   };
 
   const getUserOraganizations = () => {
-    dispatch(getUserRepos(username));
+    dispatch(getUserOrgs(username));
   };
 
   return (

@@ -1,4 +1,4 @@
 import { combineEpics } from "redux-observable";
-import { getUserReposEpic } from "../pages/home/epic";
+import { getUserOrgsEpic, getUserReposEpic } from "../pages/home/epic";
 
-export const rootEpic = combineEpics(getUserReposEpic);
+export const rootEpic = combineEpics(getUserReposEpic, getUserOrgsEpic);
