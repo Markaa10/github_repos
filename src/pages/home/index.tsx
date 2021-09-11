@@ -10,6 +10,9 @@ export function Home() {
   const state = useSelector((state) => state) as any;
 
   const userRepos = state.repos;
+  const userOrgs = state.orgs;
+
+  console.log(state);
 
   const getUserRepositories = () => {
     dispatch(getUserRepos(username));
@@ -31,13 +34,23 @@ export function Home() {
       <button onClick={getUserRepositories}>Get User Repo</button>
       <button onClick={getUserOraganizations}>Get User Oragnizations</button>
 
-      {userRepos.loading && <h1>Loading...</h1>}
+      <h3>User Repos</h3>
+      {userRepos.loading && <h1>Loading Repos...</h1>}
       {userRepos.data.length > 0 ? (
         userRepos.data.map((item: any, index: number) => (
           <p key={index}>{item.name}</p>
         ))
       ) : (
-        <h1>Please input a username</h1>
+        <h1>No user repos</h1>
+      )}
+      <h3>User Orgs</h3>
+      {userOrgs.loading && <h1>Loading Orgs...</h1>}
+      {userOrgs.data.length > 0 ? (
+        userOrgs.data.map((item: any, index: number) => (
+          <p key={index}>{item.login}</p>
+        ))
+      ) : (
+        <h1>No user Orgs</h1>
       )}
     </div>
   );
