@@ -11,22 +11,26 @@ export function Home() {
 
   const userRepos = state.repos;
 
-  const getUser = (e: any) => {
-    e.preventDefault();
+  const getUserRepositories = () => {
+    dispatch(getUserRepos(username));
+  };
+
+  const getUserOraganizations = () => {
     dispatch(getUserRepos(username));
   };
 
   return (
     <div>
       <h1>Home</h1>
-      <form onSubmit={(e) => getUser(e)}>
-        <input
-          type="text"
-          placeholder="Add a githubUsername"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <button type="submit">Get User Repo</button>
-      </form>
+
+      <input
+        type="text"
+        placeholder="Add a githubUsername"
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <button onClick={getUserRepositories}>Get User Repo</button>
+      <button onClick={getUserOraganizations}>Get User Oragnizations</button>
+
       {userRepos.loading && <h1>Loading...</h1>}
       {userRepos.data.length > 0 ? (
         userRepos.data.map((item: any, index: number) => (
