@@ -1,4 +1,11 @@
-import styled from "styled-components";
+import { useState } from "react";
+import styled, { css } from "styled-components";
+
+interface ITabProps {
+  tabs: Array<object>;
+  currentTab: string;
+  setCurrentTab: any;
+}
 
 const TabsContainer = styled.div`
   width: 100%;
@@ -16,16 +23,33 @@ const Tab = styled.h5`
 
   cursor: pointer;
   margin-right: 100px;
-  padding-bottom: 4px;
-  color: #185adb;
-  border-bottom: 2px solid #185adb;
-`;
+  color: color: #91A4B7;
+  
+  ${({ active }: any) =>
+    active &&
+    css`
+      color: #185adb;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #185adb;
+    `}
+` as any;
 
-export function Tabs() {
+export function Tabs(props: ITabProps) {
+  const { tabs, currentTab, setCurrentTab } = props;
+
   return (
     <TabsContainer>
-      <Tab>Repositories</Tab>
-      <Tab>Organizations</Tab>
+      {tabs.map((item: any, index: number) =>
+        currentTab === item.name ? (
+          <Tab key={index} active onClick={() => setCurrentTab(item.name)}>
+            {item.name}
+          </Tab>
+        ) : (
+          <Tab key={index} onClick={() => setCurrentTab(item.name)}>
+            {item.name}
+          </Tab>
+        )
+      )}
     </TabsContainer>
   );
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { LogoIcon } from "../../assets/icons/Logo";
+import { LogoIcon } from "../../assets/icons/logo";
 
 const HeaderContainer = styled.div`
   display: inline-flex;

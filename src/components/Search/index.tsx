@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SearchIcon } from "../../assets/icons/Search";
+import { SearchIcon } from "../../assets/icons/search";
 
 interface ISearchProps {
   onChange?: any;
