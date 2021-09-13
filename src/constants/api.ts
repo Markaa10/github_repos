@@ -11,7 +11,7 @@ export class Api {
 
       const data = get(res, "data");
       return data;
-    } catch (e) {
+    } catch (e: any) {
       console.log("Get user repos Error: ", e);
       throw e;
     }
@@ -24,7 +24,7 @@ export class Api {
 
       const data = get(res, "data");
       return data;
-    } catch (e) {
+    } catch (e: any) {
       console.log("Get user orgs Error: ", e);
       throw e;
     }

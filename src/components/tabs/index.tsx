@@ -1,13 +1,9 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
-import { getUserOrgs, getUserRepos } from "../../pages/home/action";
 
 interface ITabProps {
   tabs: Array<object>;
   currentTab: string;
   setCurrentTab: any;
-  username: string;
 }
 
 const TabsContainer = styled.div`
@@ -38,17 +34,9 @@ const Tab = styled.h5`
 ` as any;
 
 export function Tabs(props: ITabProps) {
-  const { tabs, currentTab, setCurrentTab, username } = props;
-
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state) as any;
+  const { tabs, currentTab, setCurrentTab } = props;
 
   const handleOnClick = (item: any) => {
-    if (state.repos.data !== null || state.orgs.data !== null) {
-      dispatch(getUserRepos(username));
-      dispatch(getUserOrgs(username));
-    }
-
     setCurrentTab(item.name);
   };
 
