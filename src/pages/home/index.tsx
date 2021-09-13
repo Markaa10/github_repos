@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Header } from "../../components/header";
+import { Search } from "../../components/Search";
 import { getUserRepos, getUserOrgs } from "./action";
 
 export function Home() {
@@ -24,6 +26,9 @@ export function Home() {
 
   return (
     <div>
+      <Header />
+
+      <Search />
       <h1>Home</h1>
 
       <input
