@@ -1,5 +1,5 @@
-import { Fragment, useEffect, useState } from "react";
-import styled from "styled-components";
+import { Fragment, useState } from "react";
+import styled, { css } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Header } from "../../components/header";
@@ -8,7 +8,8 @@ import { getUserRepos, getUserOrgs } from "./action";
 import { Tabs } from "../../components/tabs";
 import { EmptyData } from "../../components/emptyData";
 import { Loader } from "../../components/loader";
-import { Error } from "../../components/error";
+import { UserInfo } from "./userinfo";
+import { StarIcon } from "../../assets/icons/star";
 
 interface IDividerLineProps {
   marginTop?: string;
@@ -28,13 +29,14 @@ const DatasGridContainer = styled.div`
 `;
 
 const DataContainer = styled.div`
-  width: 300px;
+  max-width: 300px;
   height: 160px;
   background: #f0f5f9;
   border-radius: 8px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 16px 16px 16px;
 `;
 
 const DatasContainer = styled.div`
@@ -58,76 +60,49 @@ const DatasContainer = styled.div`
   }
 `;
 
-const UserInfoContainer = styled.div`
-  width: 300px;
-  height: 340px;
-  background: #ffffff;
-  border: 1px solid #cad5e0;
-  box-sizing: border-box;
-  border-radius: 8px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-
-  display: flex;
-  flex-direction: column;
+const RepoStarContainer = styled.div`
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  align-self: flex-end;
 `;
 
-const UserImage = styled.img`
-  width: auto;
-  height: 80px;
-  border-radius: 54px;
-`;
-
-const UserName = styled.h5`
-  font-family: Manrope;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 24px;
-  text-align: center;
-
-  color: #1c2a3a;
-  margin-top: 20px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #cad5e0;
-  width: 236px;
-`;
-
-const UserDatasCountContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 70%;
-`;
-
-const UserDataCountContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const UserDataCount = styled.p`
-  font-family: Manrope;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 24px;
-  line-height: 24px;
-
-  color: #1c2a3a;
-  margin: 0;
-`;
-
-const UserDataCountTitle = styled.p`
+const StarCount = styled.p`
   font-family: Manrope;
   font-style: normal;
   font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #1c2a3a;
+  margin-left: 4.39px;
+`;
+
+const RepoTitle = styled.h5`
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
   font-size: 16px;
   line-height: 16px;
 
-  color: #445668;
+  color: #1c2a3a;
   margin: 0;
+
+  ${({ org }: any) =>
+    org &&
+    css`
+      margin: auto;
+    `}
+` as any;
+
+const RepoDescription = styled.p`
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #445668;
+  margin: 6px 0 0 0;
 `;
 
 export function Home() {
@@ -177,33 +152,28 @@ export function Home() {
       <DividerLine marginTop={"40px"} />
       <Tabs tabs={tabs} currentTab={currentTab} setCurrentTab={setCurrentTab} />
       <DatasContainer>
-        {userRepos.data?.length > 0 && (
-          <UserInfoContainer>
-            <UserImage src={userRepos.data[0]?.owner.avatar_url} />
-            <UserName>{userRepos.data[0]?.owner.login}</UserName>
-
-            <UserDatasCountContainer>
-              <UserDataCountContainer>
-                <UserDataCount>{userRepos.data.length}</UserDataCount>
-                <UserDataCountTitle>repositories</UserDataCountTitle>
-              </UserDataCountContainer>
-
-              <UserDataCountContainer>
-                <UserDataCount>{userOrgs.data?.length}</UserDataCount>
-                <UserDataCountTitle>organizations</UserDataCountTitle>
-              </UserDataCountContainer>
-            </UserDatasCountContainer>
-          </UserInfoContainer>
-        )}
+        {userRepos.data?.length > 0 && <UserInfo />}
         <DatasGridContainer>
           {currentTab === "Repositories"
             ? userRepos.data?.length > 0 &&
               userRepos.data?.map((item: any, index: number) => (
-                <DataContainer key={index}>{item.name}</DataContainer>
+                <DataContainer key={index}>
+                  <RepoStarContainer>
+                    <StarIcon />
+                    <StarCount>{item.stargazers_count}</StarCount>
+                  </RepoStarContainer>
+
+                  <div>
+                    <RepoTitle>{item.name}</RepoTitle>
+                    <RepoDescription>{item.description}</RepoDescription>
+                  </div>
+                </DataContainer>
               ))
             : userOrgs.data?.length > 0 &&
               userOrgs.data?.map((item: any, index: number) => (
-                <DataContainer key={index}>{item.login}</DataContainer>
+                <DataContainer key={index}>
+                  <RepoTitle org>{item.login}</RepoTitle>
+                </DataContainer>
               ))}
         </DatasGridContainer>
       </DatasContainer>

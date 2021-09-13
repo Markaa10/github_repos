@@ -6,10 +6,10 @@ export const GET_USER_ORGS_LOADING = "GET_USER_ORGS_LOADING";
 export const GET_USER_ORGS_SUCCESS = "GET_USER_ORGS_SUCCESS";
 export const GET_USER_ORGS_FAILURE = "GET_USER_ORGS_FAILURE";
 
-export const getUserRepos = (payload: any) => {
+export const getUserRepos = (payload: string) => {
   return { type: GET_USER_REPOS_LOADING, payload };
 };
 
-export const getUserOrgs = (payload: any) => {
+export const getUserOrgs = (payload: string) => {
   return { type: GET_USER_ORGS_LOADING, payload };
 };
