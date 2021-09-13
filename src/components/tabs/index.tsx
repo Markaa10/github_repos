@@ -14,6 +14,7 @@ const Tab = styled.h5`
   font-size: 18px;
   line-height: 18px;
 
+  cursor: pointer;
   margin-right: 100px;
   padding-bottom: 4px;
   color: #185adb;

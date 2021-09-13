@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -38,45 +38,19 @@ export function Home() {
     dispatch(getUserOrgs(username));
   };
 
+  const handleChange = (e: any) => {};
+  const handleSearch = () => {
+    console.log("search");
+  };
+
   return (
-    <div>
+    <Fragment>
       <Header />
-
-      <Search />
-
+      <Search onChange={handleChange} onSearch={handleSearch} />
       <DividerLine marginTop={"40px"} />
-
       <Tabs />
-      <h1>Home</h1>
 
-      <input
-        type="text"
-        placeholder="Add a githubUsername"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <button onClick={getUserRepositories}>Get User Repo</button>
-      <button onClick={getUserOraganizations}>Get User Oragnizations</button>
-
-      <h3>User Repos</h3>
-      {userRepos.loading && <h1>Loading Repos...</h1>}
-      {userRepos.data.length > 0 ? (
-        userRepos.data.map((item: any, index: number) => (
-          <p key={index}>{item.name}</p>
-        ))
-      ) : (
-        <h1>No user repos</h1>
-      )}
-      <h3>User Orgs</h3>
-      {userOrgs.loading && <h1>Loading Orgs...</h1>}
-      {userOrgs.data.length > 0 ? (
-        userOrgs.data.map((item: any, index: number) => (
-          <p key={index}>{item.login}</p>
-        ))
-      ) : (
-        <h1>
-          <EmptyData />
-        </h1>
-      )}
-    </div>
+      {userRepos.data <= 0 && <EmptyData />}
+    </Fragment>
   );
 }

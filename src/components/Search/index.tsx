@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { SearchIcon } from "../../assets/icons/Search";
 
+interface ISearchProps {
+  onChange?: any;
+  onSearch?: any;
+}
+
 const SearchContainer = styled.div`
   display: inline-flex;
   align-items: center;
@@ -46,15 +51,17 @@ const SearchButton = styled.button`
   color: #f8fafc;
 `;
 
-export function Search() {
+export function Search(props: ISearchProps) {
+  const { onChange, onSearch } = props;
+
   return (
     <SearchContainer>
       <SearchInputContainer>
         <SearchIcon />
-        <SearchInput placeholder="Enter Github Username" />
+        <SearchInput placeholder="Enter Github Username" onChange={onChange} />
       </SearchInputContainer>
 
-      <SearchButton>Search</SearchButton>
+      <SearchButton onClick={onSearch}>Search</SearchButton>
     </SearchContainer>
   );
 }
