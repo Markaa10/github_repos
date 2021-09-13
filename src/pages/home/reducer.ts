@@ -7,7 +7,7 @@ import {
   GET_USER_REPOS_SUCCESS,
 } from "./action";
 
-const initialState = { loading: false, data: [], error: null };
+const initialState = { loading: false, data: null, error: null };
 
 export const reposReducer = (state: any = initialState, action: any) => {
   switch (action.type) {

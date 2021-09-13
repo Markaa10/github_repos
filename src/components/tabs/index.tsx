@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
+import { getUserOrgs, getUserRepos } from "../../pages/home/action";
 
 interface ITabProps {
   tabs: Array<object>;
   currentTab: string;
   setCurrentTab: any;
+  username: string;
 }
 
 const TabsContainer = styled.div`
-  width: 100%;
+  width: 100vw;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -35,17 +38,29 @@ const Tab = styled.h5`
 ` as any;
 
 export function Tabs(props: ITabProps) {
-  const { tabs, currentTab, setCurrentTab } = props;
+  const { tabs, currentTab, setCurrentTab, username } = props;
+
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state) as any;
+
+  const handleOnClick = (item: any) => {
+    if (state.repos.data !== null || state.orgs.data !== null) {
+      dispatch(getUserRepos(username));
+      dispatch(getUserOrgs(username));
+    }
+
+    setCurrentTab(item.name);
+  };
 
   return (
     <TabsContainer>
       {tabs.map((item: any, index: number) =>
         currentTab === item.name ? (
-          <Tab key={index} active onClick={() => setCurrentTab(item.name)}>
+          <Tab key={index} active onClick={() => handleOnClick(item)}>
             {item.name}
           </Tab>
         ) : (
-          <Tab key={index} onClick={() => setCurrentTab(item.name)}>
+          <Tab key={index} onClick={() => handleOnClick(item)}>
             {item.name}
           </Tab>
         )

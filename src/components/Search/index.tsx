@@ -11,7 +11,7 @@ const SearchContainer = styled.div`
   align-items: center;
   justify-content: center;
   max-height: 60px;
-  width: 100%;
+  width: 100vw;
 `;
 
 const SearchInputContainer = styled.div`
@@ -54,11 +54,21 @@ const SearchButton = styled.button`
 export function Search(props: ISearchProps) {
   const { onChange, onSearch } = props;
 
+  const handleOnKeydown = (e: any) => {
+    if (e.key === "Enter") {
+      onSearch();
+    }
+  };
+
   return (
     <SearchContainer>
       <SearchInputContainer>
         <SearchIcon />
-        <SearchInput placeholder="Enter Github Username" onChange={onChange} />
+        <SearchInput
+          placeholder="Enter Github Username"
+          onChange={onChange}
+          onKeyDown={handleOnKeydown}
+        />
       </SearchInputContainer>
 
       <SearchButton onClick={onSearch}>Search</SearchButton>

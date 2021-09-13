@@ -20,16 +20,19 @@ const DividerLine = styled.div<IDividerLineProps>`
 `;
 
 const DatasContainer = styled.div`
-  display: grid;
   max-width: 100vw;
-  padding: 5px 20%;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  display: grid;
+  padding: 0;
   grid-gap: 20px;
-  grid-template-areas:
-    ". . ."
-    ". . ."
-    ". . .";
+  grid-template-columns: repeat(auto-fill, 300px);
+
+  @media (min-width: 1368px) {
+    padding: 5px 20%;
+  }
+
+  @media (min-width: 1000px) {
+    padding: 5px 10%;
+  }
 `;
 
 const DataContainer = styled.div`
@@ -70,31 +73,47 @@ export function Home() {
 
   const [currentTab, setCurrentTab] = useState<string>(tabs[0].name);
 
+  const getEmptyView = () => {
+    return currentTab === "Repositories"
+      ? (userRepos.data === null || userRepos.data <= 0) &&
+          !userRepos.loading && <EmptyData />
+      : (userOrgs.data === null || userOrgs.data <= 0) && !userOrgs.loading && (
+          <EmptyData />
+        );
+  };
+
+  const loading = () => {
+    return currentTab === "Repositories"
+      ? userRepos.data <= 0 && userRepos.loading && <Loader />
+      : userOrgs.data <= 0 && userOrgs.loading && <Loader />;
+  };
+
   return (
     <Fragment>
       <Header />
       <Search onChange={handleChange} onSearch={handleSearch} />
       <DividerLine marginTop={"40px"} />
-      <Tabs tabs={tabs} currentTab={currentTab} setCurrentTab={setCurrentTab} />
+      <Tabs
+        tabs={tabs}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
+        username={username}
+      />
       <DatasContainer>
         {currentTab === "Repositories"
-          ? userRepos.data.length > 0 &&
-            userRepos.data.map((item: any, index: number) => (
+          ? userRepos.data?.length > 0 &&
+            userRepos.data?.map((item: any, index: number) => (
               <DataContainer key={index}>{item.name}</DataContainer>
             ))
-          : userOrgs.data.length > 0 &&
-            userOrgs.data.map((item: any, index: number) => (
-              <p key={index}>{item.login}</p>
+          : userOrgs.data?.length > 0 &&
+            userOrgs.data?.map((item: any, index: number) => (
+              <DataContainer key={index}>{item.login}</DataContainer>
             ))}
       </DatasContainer>
 
-      {currentTab === "Repositories"
-        ? userRepos.data <= 0 && !userRepos.loading && <EmptyData />
-        : userOrgs.data <= 0 && !userOrgs.loading && <EmptyData />}
+      {getEmptyView()}
 
-      {currentTab === "Repositories"
-        ? userRepos.data <= 0 && userRepos.loading && <Loader />
-        : userOrgs.data <= 0 && userOrgs.loading && <Loader />}
+      {loading()}
     </Fragment>
   );
 }
