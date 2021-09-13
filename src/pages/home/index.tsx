@@ -1,8 +1,20 @@
 import { useState } from "react";
+import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+
 import { Header } from "../../components/header";
 import { Search } from "../../components/Search";
 import { getUserRepos, getUserOrgs } from "./action";
+
+interface IDividerLineProps {
+  marginTop?: string;
+}
+
+const DividerLine = styled.div<IDividerLineProps>`
+  margin: 0 10%;
+  border: 1px solid #cad5e0;
+  margin-top: ${(p) => p.marginTop};
+`;
 
 export function Home() {
   const dispatch = useDispatch();
@@ -29,6 +41,8 @@ export function Home() {
       <Header />
 
       <Search />
+
+      <DividerLine marginTop={"40px"} />
       <h1>Home</h1>
 
       <input
