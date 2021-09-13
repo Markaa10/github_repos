@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Header } from "../../components/header";
 import { Search } from "../../components/Search";
 import { getUserRepos, getUserOrgs } from "./action";
+import { Tabs } from "../../components/tabs";
+import { EmptyData } from "../../components/emptyData";
 
 interface IDividerLineProps {
   marginTop?: string;
@@ -43,6 +45,8 @@ export function Home() {
       <Search />
 
       <DividerLine marginTop={"40px"} />
+
+      <Tabs />
       <h1>Home</h1>
 
       <input
@@ -69,7 +73,9 @@ export function Home() {
           <p key={index}>{item.login}</p>
         ))
       ) : (
-        <h1>No user Orgs</h1>
+        <h1>
+          <EmptyData />
+        </h1>
       )}
     </div>
   );
