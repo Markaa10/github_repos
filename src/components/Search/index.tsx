@@ -1,8 +1,12 @@
 import styled from "styled-components";
+import { SearchIcon } from "../../assets/icons/Search";
 
 const SearchContainer = styled.div`
-  dispaly: inline-flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  max-height: 60px;
+  width: 100%;
 `;
 
 const SearchInputContainer = styled.div`
@@ -12,22 +16,27 @@ const SearchInputContainer = styled.div`
   border: 1px solid #91a4b7;
   box-sizing: border-box;
   border-radius: 12px;
+
+  display: inline-flex;
+  align-items: center;
+  padding: 20px;
 `;
 
 const SearchInput = styled.input`
-  width: 99%;
-  height: 99%;
+  width: 100%;
+  height: 100%;
+  margin-left: 13.69px;
   border: none;
-  box-sizing: border-box;
-  border-radius: 12px;
   outline: none;
 `;
 
 const SearchButton = styled.button`
+  width: 132px;
   height: 60px;
   background: #185adb;
   border-radius: 12px;
   border: none;
+  margin-left: 16px;
 
   font-family: Manrope;
   font-style: normal;
@@ -41,7 +50,8 @@ export function Search() {
   return (
     <SearchContainer>
       <SearchInputContainer>
-        <SearchInput />
+        <SearchIcon />
+        <SearchInput placeholder="Enter Github Username" />
       </SearchInputContainer>
 
       <SearchButton>Search</SearchButton>
