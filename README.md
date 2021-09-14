@@ -8,7 +8,7 @@ yarn or npm i
 run the app:
 yarn start or npm run start
 
-#App Demo
+# App Demo
 https://github-scout.netlify.app/
 
 
