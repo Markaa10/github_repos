@@ -161,7 +161,10 @@ export function Home() {
           {currentTab === "Repositories"
             ? userRepos.data?.length > 0 &&
               userRepos.data?.map((item: any, index: number) => (
-                <DataContainer key={index} onClick={() => handleRepoOnClick(item)}>
+                <DataContainer
+                  key={index}
+                  onClick={() => handleRepoOnClick(item)}
+                >
                   <RepoStarContainer>
                     <StarIcon />
                     <StarCount>{item.stargazers_count}</StarCount>
