@@ -145,7 +145,7 @@ export function Home() {
       : userOrgs.data <= 0 && userOrgs.loading && <Loader />;
   };
 
-  const handleOnClick = (item: any) => {
+  const handleRepoOnClick = (item: any) => {
     window.open(item.html_url, "_blank");
   };
 
@@ -161,7 +161,7 @@ export function Home() {
           {currentTab === "Repositories"
             ? userRepos.data?.length > 0 &&
               userRepos.data?.map((item: any, index: number) => (
-                <DataContainer key={index} onClick={() => handleOnClick(item)}>
+                <DataContainer key={index} onClick={() => handleRepoOnClick(item)}>
                   <RepoStarContainer>
                     <StarIcon />
                     <StarCount>{item.stargazers_count}</StarCount>
