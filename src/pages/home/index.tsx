@@ -44,7 +44,7 @@ const DatasContainer = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   max-width: 100vw;
-  padding: 0;
+  padding: 0 0 0 5em;
 
   @media (min-width: 1368px) {
     padding: 5px 20%;
@@ -145,6 +145,10 @@ export function Home() {
       : userOrgs.data <= 0 && userOrgs.loading && <Loader />;
   };
 
+  const handleOnClick = (item: any) => {
+    window.open(item.html_url, "_blank");
+  };
+
   return (
     <Fragment>
       <Header />
@@ -157,7 +161,7 @@ export function Home() {
           {currentTab === "Repositories"
             ? userRepos.data?.length > 0 &&
               userRepos.data?.map((item: any, index: number) => (
-                <DataContainer key={index}>
+                <DataContainer key={index} onClick={() => handleOnClick(item)}>
                   <RepoStarContainer>
                     <StarIcon />
                     <StarCount>{item.stargazers_count}</StarCount>
