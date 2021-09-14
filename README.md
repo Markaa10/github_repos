@@ -1,9 +1,16 @@
-# App Demo
+# Running the app locally
+clone the repo:
+git clone 'https://github.com/Markaa10/github_repos'
+
+install the packages:
+yarn or npm i
+
+run the app:
+yarn start or npm run start
+
+#App Demo
 https://github-scout.netlify.app/
 
-# Cloning the App
-run the command:
-git clone 'https://github.com/Markaa10/github_repos'
 
 ## Available Scripts
 
