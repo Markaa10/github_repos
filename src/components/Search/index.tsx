@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SearchIcon } from "../../assets/icons/search";
+import { SearchIcon } from "../../assets/icons/Search";
 
 interface ISearchProps {
   onChange?: any;
@@ -10,12 +10,11 @@ const SearchContainer = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  max-height: 60px;
-  width: 100vw;
+  width: 100%;
+  flex-wrap: wrap;
 `;
 
 const SearchInputContainer = styled.div`
-  width: 560px;
   height: 60px;
   background: #f8fafc;
   border: 1px solid #91a4b7;
@@ -25,6 +24,9 @@ const SearchInputContainer = styled.div`
   display: inline-flex;
   align-items: center;
   padding: 20px;
+  @media (min-width: 768px) {
+    width: 560px;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -36,7 +38,7 @@ const SearchInput = styled.input`
 `;
 
 const SearchButton = styled.button`
-  width: 132px;
+  padding: 0.5rem 1.5rem;
   height: 60px;
   background: #185adb;
   border-radius: 12px;

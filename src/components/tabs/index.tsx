@@ -7,10 +7,11 @@ interface ITabProps {
 }
 
 const TabsContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 50px;
 `;
 
 const Tab = styled.h5`
@@ -21,7 +22,7 @@ const Tab = styled.h5`
   line-height: 18px;
 
   cursor: pointer;
-  margin-right: 100px;
+  // margin-right: 100px;
   color: color: #91A4B7;
   
   ${({ active }: any) =>
