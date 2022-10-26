@@ -25,7 +25,12 @@ const DatasGridContainer = styled.div`
   display: grid;
   width: 70%;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fill, 300px);
+  margin-top: 2rem;
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+    grid-template-columns: repeat(auto-fill, 300px);
+  }
 `;
 
 const DataContainer = styled.div`
@@ -41,20 +46,24 @@ const DataContainer = styled.div`
 
 const DatasContainer = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  max-width: 100vw;
-  padding: 0 0 0 5em;
+  max-width: 100%;
+  gap: 1rem;
 
   @media (min-width: 1368px) {
     padding: 5px 20%;
   }
-
+  
   @media (min-width: 1000px) {
     padding: 5px 10%;
+    padding: 0 0 0 5rem;
   }
-
+  
   @media (min-width: 600px) {
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     padding: 5px 10%;
   }
@@ -154,7 +163,9 @@ export function Home() {
       <Header />
       <Search onChange={handleChange} onSearch={handleSearch} />
       <DividerLine marginTop={"40px"} />
+
       <Tabs tabs={tabs} currentTab={currentTab} setCurrentTab={setCurrentTab} />
+
       <DatasContainer>
         {userRepos.data?.length > 0 && <UserInfo />}
         <DatasGridContainer>

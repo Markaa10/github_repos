@@ -2,14 +2,14 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const UserInfoContainer = styled.div`
-  width: 300px;
-  height: 340px;
+  min-height: 340px;
   background: #ffffff;
   border: 1px solid #cad5e0;
   box-sizing: border-box;
   border-radius: 8px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  // margin-right: 20px;
+  // margin-bottom: 20px;
+  padding: 0.5rem 2rem;
 
   display: flex;
   flex-direction: column;
