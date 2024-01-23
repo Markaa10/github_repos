@@ -5,7 +5,7 @@
 **1. Clone the repository**
 
 ```sh
-git clone 'https://github.com/Markaa10/github_repos'
+git clone 'https://github.com/rahulrajdahal/github_repos.git'
 ```
 
 **2. Install Dependencies**
