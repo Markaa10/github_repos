@@ -1,5 +1,6 @@
 import * as Tabs from "@radix-ui/react-tabs";
 import { useQueries } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Organizations, Repositories } from "..";
 import { EmptyData, HomePageLayout, Loader, UserData } from "../../components";
@@ -13,9 +14,9 @@ export default function HomePage() {
   const [searchParams] = useSearchParams();
 
   const [
-    { data, isLoading },
-    { isLoading: reposLoading },
-    { isLoading: orgsLoading },
+    { data, isLoading, refetch },
+    { isLoading: reposLoading, refetch: refetchRepos },
+    { isLoading: orgsLoading, refetch: refetchOrgs },
   ] = useQueries({
     queries: [
       {
@@ -50,6 +51,14 @@ export default function HomePage() {
       },
     ],
   });
+
+  useEffect(() => {
+    if (searchParams.get("username")) {
+      refetch();
+      refetchRepos();
+      refetchOrgs();
+    }
+  }, [searchParams, refetch, refetchRepos, refetchOrgs]);
 
   return (
     <HomePageLayout>

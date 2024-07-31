@@ -23,7 +23,7 @@ export default function HomePageLayout({
 
   return (
     <div className="flex items-center flex-col justify-center">
-      <header className="flex items-center gap-3 mt-16 mb-11">
+      <a href="/" className="flex items-center gap-3 mt-16 mb-11">
         <img
           src={GithubIcon}
           alt="github search"
@@ -34,7 +34,7 @@ export default function HomePageLayout({
         <strong className="text-grey-900 text-[2.5rem] font-bold leading-10">
           Github Finder
         </strong>
-      </header>
+      </a>
 
       <div className="flex items-center gap-4 w-full justify-center">
         <SearchInput
