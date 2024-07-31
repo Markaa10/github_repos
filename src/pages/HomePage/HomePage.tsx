@@ -89,7 +89,7 @@ export default function HomePage() {
             {isLoading || reposLoading || orgsLoading ? (
               <Loader />
             ) : data && data.login !== "null" ? (
-              <div className="flex max-w-[58.75rem] w-full gap-5">
+              <div className="flex flex-col md:flex-row max-w-[58.75rem] w-full gap-5">
                 <UserData data={data} />
                 <div
                   className={`grid place-items-center grid-cols-2 gap-5 w-full`}

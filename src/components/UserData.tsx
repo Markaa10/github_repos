@@ -14,7 +14,7 @@ export default function UserData({
   orgsCount = 0,
 }: Readonly<UserDataProps>) {
   return (
-    <div className="sticky top-4 flex border h-[21.25rem] w-full max-w-[18.75rem] border-gray-300 bg-white rounded-lg flex-col gap-6 items-center justify-center px-8 py-10">
+    <div className="md:sticky top-4 flex border h-[21.25rem] w-full max-w-[18.75rem] border-gray-300 bg-white rounded-lg flex-col gap-6 items-center justify-center px-8 py-10">
       <img
         src={data.avatar_url}
         width={200}
