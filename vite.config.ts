@@ -17,7 +17,6 @@ export default defineConfig({
         description: "Find your github repositories and organizations.",
         start_url: "/",
         theme_color: "#ffffff",
-        background_color: "#ffffff",
       },
       pwaAssets: {
         config: true,

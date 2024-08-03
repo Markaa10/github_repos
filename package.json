@@ -1,5 +1,6 @@
 {
   "name": "githubsearch",
+  "description": "Find your github repositories and organizations.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
